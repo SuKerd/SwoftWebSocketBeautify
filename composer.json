@@ -14,6 +14,7 @@
     "swoft",
     "websocket"
   ],
+  "minimum-stability": "dev",
   "description": "swoft/websocket-server 的补充与封装",
   "homepage": "https://github.com/SuKerd/WebSocketBeautify",
   "license": "Apache-2.0",
