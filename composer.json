@@ -1,0 +1,29 @@
+{
+  "name": "swoft/websocket-beautify",
+  "type": "library",
+  "authors": [
+    {
+      "name": "SuKerd",
+      "email": "326788323@qq.com",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "php",
+    "swoole",
+    "swoft"
+  ],
+  "description": "swoft/websocket-server 的补充与封装",
+  "homepage": "https://github.com/SuKerd/WebSocketBeautify",
+  "license": "Apache-2.0",
+  "require": {
+    "swoft/framework": "~2.0.0",
+    "swoft/websocket-server": "~2.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Swoft\\WebSocketBeautify\\": "src/"
+    }
+  }
+
+}
