@@ -6,15 +6,16 @@
 3. [安装](#3-安装)  
 4. [使用](#4-使用)  
 4.1. [将fd与uid绑定](#41-将fd与uid绑定)  
-4.2. [将fd与uid解绑](#42-将fd与uid解绑)  
-4.3. [判断fd是否在线](#43-判断fd是否在线)  
-4.4. [判断uid是否在线](#44-判断uid是否在线)  
-4.5. [向uid绑定的所有在线fd发送数据](#45-向uid绑定的所有在线fd发送数据)  
-4.6. [发送给某个fd客户端](#46-发送给某个fd客户端)  
-4.7. [按uid获取fd](#47-按uid获取fd)  
-4.8. [获取全局所有uid-fd列表](#48-获取全局所有uid-fd列表)  
-4.9. [按fd获取uid](#49-按fd获取uid)  
-4.10. [获取全局所有fd-uid列表](#410-获取全局所有fd-uid列表)
+4.2. [按uid解绑](#42-按uid解绑)  
+4.3. [按fd解绑](#43-按fd解绑)  
+4.4. [判断fd是否在线](#44-判断fd是否在线)  
+4.5. [判断uid是否在线](#45-判断uid是否在线)  
+4.6. [向uid绑定的所有在线fd发送数据](#46-向uid绑定的所有在线fd发送数据)  
+4.7. [发送给某个fd客户端](#47-发送给某个fd客户端)  
+4.8. [按uid获取fd](#48-按uid获取fd)  
+4.9. [获取全局所有uid-fd列表](#49-获取全局所有uid-fd列表)  
+4.10. [按fd获取uid](#410-按fd获取uid)  
+4.11. [获取全局所有fd-uid列表](#411-获取全局所有fd-uid列表)
 
 ## 1. 概述
 - swoft/websocket-server 的补充与封装，因业务需要封装了一下，后来觉得可以抽离并开源出来为swoft生态贡献我卑微的一点力量:grimacing:（极其简单，大佬勿喷）  
@@ -67,18 +68,15 @@
 
 ------------
 
-##### &emsp;4.2. 将fd与uid解绑
+##### &emsp;4.2. 按uid解绑
 
-&emsp;&emsp;&emsp;&emsp;`public static function unbindUid(string $uid, int $fd): void`
+&emsp;&emsp;&emsp;&emsp;`public static function unbindUid(string $uid, int $fd = 0): void`
 
 ###### &emsp;&emsp;参数说明：
 
 &emsp;&emsp;&emsp;&emsp;**$uid** string
 
-&emsp;&emsp;&emsp;&emsp;**$fd** int
-
-###### &emsp;&emsp;方法说明：
-&emsp;&emsp;&emsp;&emsp; **fd下线（连接断开）时不会自动执行解绑，开发者必需调用Beautify::unbindUid($uid,$fd)解绑。**
+&emsp;&emsp;&emsp;&emsp;**$fd** int 非必须，指定解绑某个fd，如果默认则解绑全部
 
 ###### &emsp;&emsp;示例：
 
@@ -86,8 +84,25 @@
 
 ------------
 
+##### &emsp;4.3. 按fd解绑
 
-##### &emsp;4.3. 判断fd是否在线
+&emsp;&emsp;&emsp;&emsp;`public static function unbindUid(string $uid, int $fd): void`
+
+###### &emsp;&emsp;参数说明：
+
+&emsp;&emsp;&emsp;&emsp;**$fd** int
+
+###### &emsp;&emsp;方法说明：
+&emsp;&emsp;&emsp;&emsp; **fd下线（连接断开）时不会自动执行解绑，开发者必需调用Beautify::unbindFd($fd)解绑。**
+
+###### &emsp;&emsp;示例：
+
+&emsp;&emsp;&emsp;&emsp;`Beautify::unbindFd(1);`
+
+------------
+
+
+##### &emsp;4.4. 判断fd是否在线
 
 &emsp;&emsp;&emsp;&emsp;` public static function isOnline(int $fd): bool`
 
@@ -106,7 +121,7 @@
 ------------
 
 
-##### &emsp;4.4. 判断uid是否在线
+##### &emsp;4.5. 判断uid是否在线
 
 &emsp;&emsp;&emsp;&emsp; `public static function isUidOnline(string $uid): int`
 
@@ -125,7 +140,7 @@
 ------------
 
 
-##### &emsp;4.5. 向uid绑定的所有在线fd发送数据
+##### &emsp;4.6. 向uid绑定的所有在线fd发送数据
 
 &emsp;&emsp;&emsp;&emsp; `public static function sendToUid(string $uid, string $data): int`
 
@@ -144,7 +159,7 @@
 ------------
 
 
-##### &emsp;4.6. 发送给某个fd客户端
+##### &emsp;4.7. 发送给某个fd客户端
 
 &emsp;&emsp;&emsp;&emsp; `public static function sendToFd(int $fd, string $data): bool`
 
@@ -160,7 +175,7 @@
 ------------
 
 
-##### &emsp;4.7. 按uid获取fd
+##### &emsp;4.8. 按uid获取fd
 
 &emsp;&emsp;&emsp;&emsp; ` public static function getFd(string $uid): array`
 
@@ -178,7 +193,7 @@
 ------------
 
 
-##### &emsp;4.8. 获取全局所有uid-fd列表
+##### &emsp;4.9. 获取全局所有uid-fd列表
 
 &emsp;&emsp;&emsp;&emsp; `public static function getAllUidFd(): array`
 
@@ -192,7 +207,7 @@
 ------------
 
 
-##### &emsp;4.9. 按fd获取uid
+##### &emsp;4.10. 按fd获取uid
 
 &emsp;&emsp;&emsp;&emsp; `public static function getUid(string $fd): string`
 
@@ -210,7 +225,7 @@
 ------------
 
 
-##### &emsp;4.10. 获取全局所有fd-uid列表
+##### &emsp;4.11. 获取全局所有fd-uid列表
 
 &emsp;&emsp;&emsp;&emsp; `public static function getAllFdUid(): array`
 
