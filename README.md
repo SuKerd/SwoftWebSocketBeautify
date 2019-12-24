@@ -86,7 +86,7 @@
 
 ##### &emsp;4.3. 按fd解绑
 
-&emsp;&emsp;&emsp;&emsp;`public static function unbindUid(string $uid, int $fd): void`
+&emsp;&emsp;&emsp;&emsp;`public static function unbindFd(int $fd): void`
 
 ###### &emsp;&emsp;参数说明：
 
