@@ -114,5 +114,4 @@ class Beautify extends CacheOperation
         }
         return $is_success;
     }
-
 }
