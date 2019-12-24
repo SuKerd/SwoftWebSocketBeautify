@@ -150,7 +150,7 @@
 
 ###### &emsp;&emsp;参数说明：
 
-&emsp;&emsp;&emsp;&emsp;**$fd** int
+&emsp;&emsp;&emsp;&emsp;**$fd** int  
 &emsp;&emsp;&emsp;&emsp;**$data** string
 
 ###### &emsp;&emsp;示例：
