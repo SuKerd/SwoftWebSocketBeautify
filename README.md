@@ -17,7 +17,7 @@
 4.10. [获取全局所有fd-uid列表](#410-获取全局所有fd-uid列表)
 
 ## 1. 概述
-- swoft/websocket-server 的补充与封装（极其简单，大佬勿喷）  
+- swoft/websocket-server 的补充与封装，因业务需要封装了一下，后来觉得可以抽离并开源出来为swoft生态贡献我卑微的一点力量:grimacing:（极其简单，大佬勿喷）  
 （在此感谢swoft框架作者[@stelin](https://github.com/stelin "@stelin")提供如此优秀的框架，也感谢workerman框架作者[@walkor](https://github.com/walkor "@walkor")提供的思路）  
 - 使用Redis hash实现的进程间共享内存
 （为什么不用swoole table？因为无法动态扩容，与需求相驳）
