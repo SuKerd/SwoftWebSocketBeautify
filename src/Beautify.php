@@ -70,7 +70,7 @@ class Beautify extends CacheOperation
     }
 
     /**
-     * 判断uid是否在线
+     * 获取当前uid全部所在线连接数量
      * @param string $uid
      * @return int 在线数
      */
