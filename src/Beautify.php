@@ -71,7 +71,7 @@ class Beautify extends CacheOperation
     {
         $sum = 0;
         foreach (self::getFd($uid) as $fd) {
-            if (self::isOnline($fd)) {
+            if (self::isOnline((int)$fd)) {
                 $sum++;
             }
         }
@@ -89,8 +89,8 @@ class Beautify extends CacheOperation
         $sum = 0;
         $receivers = [];
         foreach (self::getFd($uid) as $fd) {
-            if (self::isOnline($fd)) {
-                $receivers[] = $fd;
+            if (self::isOnline((int)$fd)) {
+                $receivers[] = (int)$fd;
             }
         }
         if (!empty($receivers)) {
