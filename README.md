@@ -1,4 +1,4 @@
-# WebSocketBeautify
+# SwoftWebSocketBeautify
 ## 目录
 
 1. [概述](#1-概述)  
