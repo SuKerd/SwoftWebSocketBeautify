@@ -82,19 +82,22 @@ class Beautify extends CacheOperation
      * 向uid绑定的所有在线fd发送数据
      * @param string $uid
      * @param string $data
-     * @return bool
+     * @return int
      */
-    public static function sendToUid(string $uid, string $data): bool
+    public static function sendToUid(string $uid, string $data): int
     {
-        $is_success = false;
+        $sum = 0;
+        $receivers = [];
         foreach (self::getFd($uid) as $fd) {
             if (self::isOnline($fd)) {
-                if (server()->push($fd, $data)) {
-                    $is_success = true;
-                }
+                $receivers[] = $fd;
             }
         }
-        return $is_success;
+        if (!empty($receivers)) {
+            $sum = server()->sendToSome($data, $receivers);
+        }
+
+        return $sum;
     }
 
     /**
