@@ -59,7 +59,7 @@
 &emsp;&emsp;&emsp;&emsp;1. uid与fd是一对多的关系，允许一个uid下有多个fd。  
 &emsp;&emsp;&emsp;&emsp;2. 一个fd只能绑定一个uid，如果绑定多次uid，则只有最后一次绑定有效。  
 &emsp;&emsp;&emsp;&emsp;3. 如果业务需要一对一的关系，Beautify::getFd($uid)获得某uid已经绑定的所有fd，然后调用 Session::mustGet()->getServer()->disconnect($fd)踢掉之前的fd  
-&emsp;&emsp;&emsp;&emsp;4. **因为使用Redis hash实现的进程间共享内存，如果服务端产生异常（如：stop、restart、等等）会导致之前产生的绑定数据依然留存与缓存中，但是不用担心程序重启后数据冲突的问题，一旦fd重新上线并进行绑定，Beautify会自己处理因意外原因遗留被绑定的uid、fd并解绑**
+&emsp;&emsp;&emsp;&emsp;4. **因为使用Redis hash实现的进程间共享内存，如果服务端产生异常（如：stop、restart、等等）会导致之前产生的绑定数据依然留存于缓存中，但是不用担心程序重启后数据冲突的问题，一旦fd重新上线并进行绑定，Beautify会自己处理因意外原因遗留被绑定的uid、fd并解绑**
 
 ###### &emsp;&emsp;示例：
 
