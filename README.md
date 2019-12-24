@@ -131,7 +131,7 @@
 
 ###### &emsp;&emsp;参数说明：
 
-&emsp;&emsp;&emsp;&emsp;**$uid** string
+&emsp;&emsp;&emsp;&emsp;**$uid** string  
 &emsp;&emsp;&emsp;&emsp;**$data** string
 
 ###### &emsp;&emsp;方法说明：
