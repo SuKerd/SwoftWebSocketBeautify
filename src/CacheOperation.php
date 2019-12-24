@@ -87,6 +87,11 @@ class CacheOperation
      */
     protected static function delFd(string $uid, string $fd): void
     {
+        if ($fd === '') {
+            self::del('Uid-Fd', $uid);
+            return;
+        }
+
         $pastFd = self::getFd($uid);
         if (empty($pastFd)) return;
         $legacyFd = array_filter($pastFd, function ($v) use ($fd) {

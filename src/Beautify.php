@@ -26,30 +26,37 @@ class Beautify extends CacheOperation
     {
         $fd = $fd === 0 ? Session::mustGet()->getFd() : $fd;
         if (!self::isOnline($fd)) return false;
-        $fd = (string)$fd;
 
         // 获取因意外原因遗留被绑定的uid并解绑
-        if ($legacyUid = self::getUid($fd)) {
-            self::delFd($legacyUid, $fd);
-        }
+        self::unbindFd($fd);
 
         // 获取uid之前已绑定的fd
         $pastFd = self::getFd($uid);
         $pastFd[] = $fd;
         self::setFd($uid, $pastFd);
-        self::setUid($fd, $uid);
+        self::setUid((string)$fd, $uid);
         return true;
     }
 
     /**
-     * 将fd与uid解绑
+     * 按uid解绑
      * @param string $uid
+     * @param int $fd 指定解绑某个fd，如果默认则解绑全部
+     */
+    public static function unbindUid(string $uid, int $fd = 0): void
+    {
+        self::delFd($uid, $fd === 0 ? '' : (string)$fd);
+        self::delUid((string)$fd);
+    }
+
+    /**
+     * 按fd解绑
      * @param int $fd
      */
-    public static function unbindUid(string $uid, int $fd): void
+    public static function unbindFd(int $fd): void
     {
-        self::delFd($uid, (string)$fd);
-        self::delUid((string)$fd);
+        $uid = self::getUid((string)$fd);
+        self::unbindUid($uid, $fd);
     }
 
     /**
